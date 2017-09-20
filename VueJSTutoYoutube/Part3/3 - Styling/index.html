@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Vue.js Tutorial part3</title>
+        <link rel="stylesheet" type="text/css" href="css/file.css"></link>
+    </head>
+    <body>
+        <div id="app">
+            <!-- Exo1: bind the "shapeStyles" data property to the style attribute.
+            When clickin the below shape, change the shape from round to squared or vice versa.
+            Hint: use Vue.set to manipulate the data property. Use the "border-radius"
+            CSS property for round corners -->
+            <div class="shape" v-bind:class="styleClasses.shape" v-on:click="shapeShift()"></div>
+
+            <!-- Exo2: Apply the highligted class to every second row in the below 
+            table. HINT: use the modulus operator together with the v-for loop index -->
+            <h1>Employees</h1>
+
+            <table border="1">
+                <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Title</td>
+                        <td>company name</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(employee,index) in employees" v-bind:class="[index%2==0 ? 'highlighted' : '']">
+                        <td>{{employee.name}}</td>
+                        <td>{{employee.title}}</td>
+                        <td>{{companyName}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <script src="javascript/vue.js"></script>
+        <script src="javascript/script.js"></script>
+    </body>
+</html>

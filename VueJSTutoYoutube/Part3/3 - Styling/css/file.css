@@ -1,0 +1,36 @@
+[v-cloak] {
+    display:none;
+}
+
+.shape {
+    width: 150px;
+    height: 150px;
+    background-color: blue;
+}
+
+.shape.square {
+    border-radius:0%;
+    animation-name: example2;
+    animation-duration: 0.1s;
+}
+
+.shape.round {
+    border-radius:50%;
+    animation-name: example;
+    animation-duration: 0.1s;
+}
+
+@keyframes example {
+    0%   {border-radius:0%;}
+
+    100% {border-radius:50%;}
+}
+@keyframes example2 {
+    0%   {border-radius:50%;}
+
+    100% {border-radius:0%;}
+}
+
+.highlighted {
+    background-color: #DECA9B;
+}

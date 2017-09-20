@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Vue.js Tutorial</title>
+        <link rel="stylesheet" type="text/css" href="css/file.css"></link>
+    </head>
+    <body>
+        <!-- <div  id="app">
+            <h1>My Top Movies</h1>
+            <ul>
+                <li v-for="(movieTitle, index) in movieTitles">#{{index}} {{movieTitle}}</li>
+            </ul>
+
+            <h2> Playlist</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Artist</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="music in playlist">
+                        <th>{{music.title}}</th>
+                        <th>{{music.artist}}</th>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <ul>
+                <li v-for="number in numbers">
+                    {{number}} 
+                </li>
+            </ul>
+            <button v-on:click="changeNumber()">change number</button>
+        </div> -->
+        <div id="app">
+            <p>{{ counter }}</p>
+            <p>{{ firstname }}</p>
+            <p>{{ lastname }}</p>
+
+            <button v-on:click="counter++">Increase Counter</button>
+            <button v-on:click="fullName.set()">Change Name</button>
+        </div>
+
+        <script src="javascript/vue.js"></script>
+        <script src="javascript/script.js"></script>
+    </body>
+</html>
