@@ -17,8 +17,8 @@ new Vue({
             {name: 'Javascript', sub: ['macOS','Linux','Windows']}
         ],
         firstname: "",
-        lastname:"",
-        counter:0
+        lastname: "",
+        counter: 0
     },
     methods: {
         changeNumber: function(){
