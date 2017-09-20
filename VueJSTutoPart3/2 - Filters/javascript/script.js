@@ -22,7 +22,7 @@ new Vue({
             if(!value){
                 return '';
             }
-            return value.toString().replace(/\s/g/a/, '');
+            return value.toString().replace(/\s/g, '');
         }
     }
 })
