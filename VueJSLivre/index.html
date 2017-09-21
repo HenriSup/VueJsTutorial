@@ -17,7 +17,7 @@
                 <button v-on:click="candidate.votes++" class="btn btn-default">Vote</button>
             </li>
         </ul>
-        <input @keyup.delete="clear" class="form-control" placeholder="press 'delete' to reset "></input>
+        <input @keyup.delete="resetCounters()" class="form-control" placeholder="press 'delete' to reset "></input>
         <h2>Our mayor is {{winner.name}}!</h2>
 
         <pre>{{$data}}</pre>
