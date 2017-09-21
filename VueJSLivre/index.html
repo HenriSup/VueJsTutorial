@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Vue.js Tutorial part3</title>
+        <link rel="stylesheet" type="text/css" href="css/file.css"></link>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div id="app">
+                <h1>About Me</h1>
+                
+                    <ul class="list-group"></ul>
+                        <li  v-for="(value,key,index) in personalInformation"class="list-group-item">
+                            {{index}}: {{key}} = {{value}}
+                        </li>
+                    </ul>
+                
+                <pre>{{$data}}</pre>
+            </div>
+        </div>
+
+        <script src="javascript/vue.js"></script>
+        <script src="javascript/script.js"></script>
+    </body>
+
+</html>
