@@ -1,27 +1,31 @@
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Vue.js Tutorial part3</title>
-        <link rel="stylesheet" type="text/css" href="css/file.css"></link>
-        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
-    </head>
-    <body>
-        <div class="container-fluid">
-            <div id="app">
-                <h1>About Me</h1>
-                
-                    <ul class="list-group"></ul>
-                        <li  v-for="(value,key,index) in personalInformation"class="list-group-item">
-                            {{index}}: {{key}} = {{value}}
-                        </li>
-                    </ul>
-                
-                <pre>{{$data}}</pre>
-            </div>
-        </div>
 
-        <script src="javascript/vue.js"></script>
-        <script src="javascript/script.js"></script>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js Tutorial part3</title>
+    <link rel="stylesheet" type="text/css" href="css/file.css"></link>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+</head>
+
+<body>
+    <div id="app" class="container">
+        <h1>Vote</h1>
+
+        <ul class="list-group">
+            <li v-for="candidate in candidates" class="list-group-item">
+                {{candidate.name}} : {{candidate.votes}}
+                <button v-on:click="candidate.votes++" class="btn btn-default">Vote</button>
+            </li>
+        </ul>
+        <input @keyup.delete="clear" class="form-control" placeholder="press 'delete' to reset "></input>
+        <h2>Our mayor is {{winner.name}}!</h2>
+
+        <pre>{{$data}}</pre>
+        <pre>{{ winner }}</pre>
+    </div>
+
+    <script src="javascript/vue.js"></script>
+    <script src="javascript/script.js"></script>
+</body>
 
 </html>
