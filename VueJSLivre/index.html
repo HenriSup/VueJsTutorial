@@ -9,23 +9,28 @@
 
 <body>
     <div id="app" class="container">
-        <h1>Vote</h1>
+        <h1>People</h1>
 
         <ul class="list-group">
-            <li v-for="candidate in candidates" class="list-group-item">
-                {{candidate.name}} : {{candidate.votes}}
-                <button v-on:click="candidate.votes++" class="btn btn-default">Vote</button>
+            <li v-for="person in _.orderBy(people,['age'],['asc'])" class="list-group-item">
+                {{person.name}} : {{person.age}} 
             </li>
         </ul>
-        <input @keyup.delete="resetCounters()" class="form-control" placeholder="press 'delete' to reset "></input>
-        <h2>Our mayor is {{winner.name}}!</h2>
+
+        <h1>Old People</h1>
+        <ul class="list-group">
+            <li v-for="person in oldPeople" class="list-group-item">
+                {{person.name}} : {{person.age}} 
+            </li>
+        </ul>
 
         <pre>{{$data}}</pre>
-        <pre>{{ winner }}</pre>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
     <script src="javascript/vue.js"></script>
     <script src="javascript/script.js"></script>
+
 </body>
 
 </html>
