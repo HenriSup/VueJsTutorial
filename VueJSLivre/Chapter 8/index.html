@@ -10,15 +10,26 @@
 <body>
     <div id="app">
         <div class="container text-center"> 
+            <h1>FOOD FIGHT</h1>
             <p 
                 style="font-size: 140px;"> {{ votes }} 
             </p>
-            <food @voted="countVote" name="Cheeseburger"></food>
+            <food @voted="countVote" name="cheeseBurger"></food>
+            <food @voted="countVote" name="Sushi"></food>
+            <food @voted="countVote" name="test"></food>
+
+            <h1>Log:</h1> 
+            <ul class="list-group"> 
+                <li class="list-group-item" v-for="vote in log"> {{ vote }} </li>
+            </ul>
         </div> 
     </div>
 
-    <template id="food"> 
-        <button class="btn btn-default" @click="vote">{{ name }}</button>
+    <template id="food">
+        <div class="text-center col-lg-4"> 
+            <button class="btn btn-default" @click="vote">{{ name }}</button>
+            <p> {{votes}} </p>
+        </div>
     </template> 
 
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>

@@ -1,22 +1,30 @@
 Vue.component('food',{
     template: '#food',
     props: ['name'],
-    methods: {
-        vote: function(){
-            this.$emit('voted')
-        }
+    data: function() {
+        return {
+            votes:0
+        };
     },
+    methods: {
+        vote: function(event){
+            console.log(event)
+            this.votes++;
+            this.$emit('voted', event.srcElement.textContent);
+        }
+    }
 })
-
 
 new Vue({
     el:'#app',
     data: {
-        votes:0
+        votes:0,
+        log: []
     },
     methods: { 
-        countVote: function () {
-             this.votes++ 
+        countVote: function (food,test) {
+             this.votes++;
+             this.log.push(food + ' recieved a vote !')
         }, 
     } 
 })  
