@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js Tutorial part3</title>
+    <link rel="stylesheet" type="text/css" href="css/file.css"></link>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container"></div>
+            <h1>Histoires:</h1>
+
+            <ul  class="list-group">
+                <planet  v-for="planet in planets" v-bind:planet="planet" v-bind:favorite="favorite"></planet>
+            </ul>
+
+            <pre>{{$data}}</pre>
+        </div>
+    </div>
+
+    <template id="planet-template">
+        <li class="list-group-item">
+            Planet : {{planet.name}} Visited {{planet.numberOfVisits}} time(s).
+            <button v-show="canStillBeVisited" v-on:click="visitPlanet" class="btn btn-default">
+                Visit
+            </button>
+            <span v-if="hasBeenVisitedOnce" class="glyphicon glyphicon-plane pull-right" aria-hidden="true"></span>
+        </li>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
+    <script src="javascript/vue.js"></script>
+    <script src="javascript/script.js"></script>
+
+</body>
+
+</html>
