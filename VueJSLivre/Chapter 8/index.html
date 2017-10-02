@@ -9,28 +9,22 @@
 
 <body>
     <div id="app">
-        <div class="container text-center"> 
-            <h1>FOOD FIGHT</h1>
-            <p 
-                style="font-size: 140px;"> {{ votes }} 
-            </p>
-            <food @voted="countVote" name="cheeseBurger"></food>
-            <food @voted="countVote" name="Sushi"></food>
-            <food @voted="countVote" name="test"></food>
-
-            <h1>Log:</h1> 
+        <div class="container"> 
+            <h1>Buying Chariots</h1>
             <ul class="list-group"> 
-                <li class="list-group-item" v-for="vote in log"> {{ vote }} </li>
             </ul>
+            <chariot v-for="chariot in chariots" :chariot=chariot :current-chariot=currentChariot></chariot>
         </div> 
     </div>
 
-    <template id="food">
-        <div class="text-center col-lg-4"> 
-            <button class="btn btn-default" @click="vote">{{ name }}</button>
-            <p> {{votes}} </p>
-        </div>
-    </template> 
+    <template id="chariot">
+        <li class="list-group-item"> 
+            <p>"{{name}}" chariot has {{numberOfHorses}} horse(s)!  </p>
+            <button type="button" class="btn btn-primary" @click="rideChariot(chariot)" v-bind:disabled="currentChariot == chariot">
+                {{action}}
+            </button>
+        </li>
+    </template>
 
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
     <script src="javascript/vue.js"></script>

@@ -1,16 +1,41 @@
-Vue.component('food',{
-    template: '#food',
-    props: ['name'],
+var bus = new Vue()
+
+Vue.component('chariot',{
+    template: '#chariot',
+    props: ['chariot','currentChariot'],
     data: function() {
         return {
-            votes:0
+            name:this.chariot.name,
+            numberOfHorses:this.chariot.numberOfHorses
         };
     },
     methods: {
-        vote: function(event){
-            console.log(event)
-            this.votes++;
-            this.$emit('voted', event.srcElement.textContent);
+        rideChariot: function(chariot){
+            bus.$emit('setCurrentChariot', chariot);
+        }
+    },
+    computed: {
+        noChariot:function(){
+            return this.currentChariot == null;
+        },
+        isCurrent:function(){
+            return this.currentChariot == this.chariot;
+        },
+        hasMoreHorses:function(){
+            return this.chariot.numberOfHorses > this.currentChariot.numberOfHorses;
+        },
+        action : function() {
+            action = null;
+            if(this.noChariot) {
+                action="Pick chariot"
+            } else if (this.isCurrent) {
+                action="Riding !"
+            } else if (this.hasMoreHorses) {
+                action="Hire horses"
+            } else {
+                action="Dismiss horses"
+            }
+            return action;
         }
     }
 })
@@ -18,13 +43,20 @@ Vue.component('food',{
 new Vue({
     el:'#app',
     data: {
-        votes:0,
-        log: []
+        currentChariot:null,
+        chariots: [
+            {name:"Hell",numberOfHorses:4},
+            {name:"Dan's",numberOfHorses:3},
+            {name:"Fire",numberOfHorses:2},
+            {name:"Mugman",numberOfHorses:1},
+        ]
     },
     methods: { 
-        countVote: function (food,test) {
-             this.votes++;
-             this.log.push(food + ' recieved a vote !')
+        setCurrentChariot: function (chariot) {
+             this.currentChariot=chariot;
         }, 
-    } 
+    },
+    created(){
+        bus.$on('setCurrentChariot', this.setCurrentChariot)
+    }
 })  
