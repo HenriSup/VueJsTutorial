@@ -19,7 +19,7 @@
 
     <template id="chariot">
         <li class="list-group-item"> 
-            <p>"{{name}}" chariot has {{numberOfHorses}} horse(s)!  </p>
+            <p>"{{name}}" chariot has <b>{{numberOfHorses}}</b> horse(s)!  </p>
             <button type="button" class="btn btn-primary" @click="rideChariot(chariot)" v-bind:disabled="currentChariot == chariot">
                 {{action}}
             </button>
