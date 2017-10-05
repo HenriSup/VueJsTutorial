@@ -1,6 +1,6 @@
 Vue.component('story',{
     template: '#template-story-raw',
-    props:['story'],
+    props: ['story'],
     computed:{
         id:function() {
             return this.story.id;

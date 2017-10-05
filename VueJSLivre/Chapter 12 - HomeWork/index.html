@@ -12,11 +12,48 @@
     <div class="container">
         <h1>Movies</h1>
         <div id="app">
-            
+            <table class="table table-striped">
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Director</th>
+                    <th>Actions</th>
+                </tr>
+                <tr v-for="movie in movies" is="movie" :movie='movie'></tr>
+            </table>
+            <p class="lead">
+                <button class="btn btn-primary" v-on:click="createMovie()">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <b>Add movie</b>
+                </button>
+            </p>
             <pre>{{$data}}</pre>
         </div>
     </div>
 </main>
+<template id="movie-template">
+    <tr>
+        <td>{{id}}</td>
+        <td class="col-md-6">
+            <input v-if="movie.editing" v-model="movie.title" class="form-control">
+            <span v-else>{{title}}</span>
+        </td>
+        <td class="col-md-2">
+            <input v-if="movie.editing" v-model="movie.director" class="form-control">
+            <span v-else>{{director}}</span>
+        </td>
+        <td class="col-md-4">
+            <div v-if="!movie.editing" class="btn-group">
+                <button class="btn btn-primary" v-on:click="editMovie(movie)"><span class="glyphicon glyphicon-edit" aria-hidden="true" ></span> <b>Edit</b></button>
+                <button class="btn btn-danger" v-on:click="deleteMovie(movie)"><span class="glyphicon glyphicon-trash" aria-hidden="true" ></span> <b>Delete</b></button>
+            </div>
+            <div v-else class="btn-group">
+                <button v-if="movie.id" class="btn btn-success" v-on:click="updateMovie(movie)"><span class="glyphicon glyphicon-ok" aria-hidden="true" ></span> <b>Save</b></button>
+                <button v-else class="btn btn-success" v-on:click="saveMovie(movie)"><span class="glyphicon glyphicon-ok" aria-hidden="true" ></span> <b>Save</b></button>
+                <button class="btn btn-danger" v-on:click="movie.editing=false"><span class="glyphicon glyphicon-remove" aria-hidden="true" ></span> <b>Cancel</b></button>
+            </div>
+        </td>
+    </tr>
+</template>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
 <script src="javascript/vue.js"></script>
