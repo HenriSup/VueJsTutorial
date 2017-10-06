@@ -1,0 +1,101 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js Tutorial part3</title>
+    <link rel="stylesheet" type="text/css" href="css/file.css"></link>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+</head>
+
+<body>
+<main>
+    <div class="container">
+        <h1>Stories</h1>
+        <div id="app">
+            <div class="pagination">
+                <button v-on:click="fetchStories(pagination.prev_page_url)"
+                        :disabled="!pagination.prev_page_url" 
+                        type="button" class="btn btn-primary"
+                >
+                    Previous
+                </button>
+                <span>Page {{pagination.current_page}} of {{pagination.last_page}}</span>
+                <button v-on:click="fetchStories(pagination.next_page_url)"
+                        :disabled="!pagination.next_page_url" 
+                        type="button" class="btn btn-primary"
+                >
+                    Next
+                </button>
+            </div>
+            <table class="table table-striped">
+                <tr>
+                    <th>#</th>
+                    <th>Plot</th>
+                    <th>Writer</th>
+                    <th>UpVote</th>
+                    <th>Actions</th>
+                </tr>
+                <tr v-for="story in stories" is="story" :story=story></tr>
+            </table>
+            <p class="lead">
+                <button class="btn btn-primary" v-on:click="createStory()">
+                    <span class="glyphicon glyphicon-plus"></span> <b>Add Story</b>
+                </button>
+            </p>
+            <pre>{{$data.pagination}}</pre>
+            <pre>{{$data.stories}}</pre>
+        </div>
+    </div>
+</main>
+
+<template id="template-story-raw">
+    <tr>
+        <td >
+            {{id}}
+        </td>
+        <td class="col-md-6">
+            <input v-if="story.editing" v-model="story.plot" class="form-control">
+            <span v-else>{{plot}}</span>
+        </td>
+        <td class="col-md-2">
+            <input v-if="story.editing" v-model="story.writer" class="form-control">
+            <span v-else>{{writer}}</span>
+        </td>
+        <td class="col-md-1">
+            <span>{{upVotes}}</span>
+        </td>
+        <td class="col-md-4">
+            <div v-if="!story.editing" class="btn-group">
+                <button class="btn btn-primary" v-on:click="upVoteStory(story)">
+                    <span class="glyphicon glyphicon-thumbs-up"></span> <b>Upvote</b>
+                </button>
+                
+                <button class="btn btn-secondary" v-on:click="editStory(story)">
+                    <span class="glyphicon glyphicon-edit"></span> <b>Edit</b>
+                </button>
+
+                <button class="btn btn-danger" v-on:click="deleteStory(story)">
+                    <span class="glyphicon glyphicon-trash"></span> <b>Delete</b>
+                </button>
+            </div>
+            <div v-else class="btn-group">
+                <button v-if="story.id" class="btn btn-primary" v-on:click="updateStory(story)">
+                    <span class="glyphicon glyphicon-ok"></span> <b>Update</b>
+                </button>
+                <button v-else class="btn btn-success" v-on:click="saveStory(story)">
+                    <span class="glyphicon glyphicon-ok"></span> <b>Save</b>
+                </button>
+
+                <button class="btn btn-danger" v-on:click="story.editing=false">
+                    <span class="glyphicon glyphicon-remove"></span> <b>Cancel</b>
+                </button>
+            </div>
+        </td>
+    </tr>
+</template>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+<script src="javascript/vue.js"></script>
+<script src="javascript/app.js"></script>
+</body>
+</html>
