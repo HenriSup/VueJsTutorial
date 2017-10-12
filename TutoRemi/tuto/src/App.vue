@@ -1,23 +1,18 @@
 <template>
   <div id="app">
+    <div>
+      <router-link :to="{name:'Hello'}">Page1</router-link>
+      <router-link :to="{name:'FirstRoute',params:{name:'marc'}}">Page2 With params</router-link>
+    </div>
     <img src="./assets/logo.png">
-    <!-- <router-view/> -->
-    <login></login>
-    <register></register>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import Login from './components/Login.vue'
-import Register from './components/Register.vue'
-
 export default {
   name: 'app',
-  components: {
-    Login,
-    Register
-  }
-}
+};
 </script>
 
 <style>
